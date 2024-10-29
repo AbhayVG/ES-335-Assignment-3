@@ -49,19 +49,19 @@ vocab_dict_inv = {ch:i for i, ch in enumerate(unique_chars)}
 
 # model
 class NextChar(nn.Module):
-  def __init__(self, block_size, vocab_size, emb_dim):
-    super().__init__()
-    self.emb = nn.Embedding(vocab_size, emb_dim)
-    self.lin1 = nn.Linear(block_size * emb_dim, 1024)
-    self.lin2 = nn.Linear(1024, vocab_size)
-    self.activation = nn.ReLU()
+    def __init__(self, block_size, vocab_size, emb_dim):
+        super().__init__()
+        self.emb = nn.Embedding(vocab_size, emb_dim)
+        self.lin1 = nn.Linear(block_size * emb_dim, 1024)
+        self.lin2 = nn.Linear(1024, vocab_size)
+        self.activation = nn.ReLU()
 
-  def forward(self, x):
-    x = self.emb(x)
-    x = x.view(x.shape[0], -1)
-    x = self.activation(self.lin1(x))
-    x = self.lin2(x)
-    return x
+    def forward(self, x):
+        x = self.emb(x)
+        x = x.view(x.shape[0], -1)
+        x = self.activation(self.lin1(x))
+        x = self.lin2(x)
+        return x
 
 # create model
 model = NextChar(block_size, len(unique_chars), emb_dim)
