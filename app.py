@@ -22,10 +22,10 @@ emb_dim = st.selectbox('Select the embedding dimension', (32, 64))
 # select context length (drop-down)
 block_size = st.selectbox('Select the context length', (2, 6 ,10))
 
-activation_functions = {"ReLU": 1, "Tanh": 2, "Sigmoid": 3}
+activation_functions = {"ReLU": 1, "Tanh": 2, "Sigmoid": 3, "Sin": 4}
 
 # select activation function (drop-down)
-activation = st.selectbox('Select the activation function', ('ReLU', 'Tanh', 'Sigmoid'))
+activation = st.selectbox('Select the activation function', ('ReLU', 'Tanh', 'Sigmoid', 'Sin'))
 
 # path to the model
 path = f"models/{seed}_context_{block_size}_embedding_{emb_dim}_activation_{activation_functions[activation]}.pt"
